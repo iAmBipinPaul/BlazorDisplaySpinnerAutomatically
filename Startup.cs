@@ -18,8 +18,6 @@ namespace BlazorDisplaySpinnerAutomatically
                 var blazorDisplaySpinnerAutomaticallyHttpMessageHandler = s.GetRequiredService<BlazorDisplaySpinnerAutomaticallyHttpMessageHandler>();
                 var wasmHttpMessageHandlerType = Assembly.Load("WebAssembly.Net.Http").GetType("WebAssembly.Net.Http.HttpClient.WasmHttpMessageHandler");
                 var wasmHttpMessageHandler = (HttpMessageHandler)Activator.CreateInstance(wasmHttpMessageHandlerType);
-                var httpClient = new HttpClient(wasmHttpMessageHandler);
-
                 blazorDisplaySpinnerAutomaticallyHttpMessageHandler.InnerHandler = wasmHttpMessageHandler;
                 var uriHelper = s.GetRequiredService<NavigationManager>();
                 return new HttpClient(blazorDisplaySpinnerAutomaticallyHttpMessageHandler)
